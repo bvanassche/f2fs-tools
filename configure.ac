@@ -143,9 +143,7 @@ AC_CHECK_FUNCS_ONCE([
 	fstat
 	fstat64
 	fsync
-	getgid
 	getmntent
-	getuid
 	keyctl
 	llseek
 	lseek64
@@ -242,30 +240,5 @@ AC_SUBST(FMT_AGE, 0)
 AC_SUBST(LIBF2FS_CURRENT, 9)
 AC_SUBST(LIBF2FS_REVISION, 0)
 AC_SUBST(LIBF2FS_AGE, 0)
-
-AH_BOTTOM([
-#ifndef _CONFIG_H_
-#define _CONFIG_H_
-
-#ifdef HAVE_SYS_STAT_H
-#include <sys/stat.h>
-#endif
-
-#ifndef HAVE_GETUID
-static inline unsigned int getuid(void) { return -1; }
-#endif
-#ifndef HAVE_GETGID
-static inline unsigned int getgid(void) { return -1; }
-#endif
-
-#ifndef S_ISLNK
-#define S_ISLNK(mode) false
-#endif
-#ifndef S_ISSOCK
-#define S_ISSOCK(mode) false
-#endif
-
-#endif
-])
 
 AC_OUTPUT

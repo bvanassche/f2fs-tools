@@ -91,6 +91,10 @@
 
 #ifdef _WIN32
 #undef HAVE_LINUX_TYPES_H
+#define S_ISLNK(mode) false
+#define S_ISSOCK(mode) false
+static inline unsigned int getuid(void) { return -1; }
+static inline unsigned int getgid(void) { return -1; }
 #endif
 
 /* codes from kernel's f2fs.h, GPL-v2.0 */
